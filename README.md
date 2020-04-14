@@ -32,6 +32,7 @@ After entering all task details, the algorithm will determine whether your sched
 
 If it is feasible, it will print a visualization of the schedule in the form of a timeline.
 
+**Note:** the visualization may not be perfect if there are too many tasks in the schedule of if the schedule timeline is too long. It should work fine with values in the double digits. The application also outputs the schedule in JSON format which can be used to view and verify bigger schedules if the visualization is off. 
 ```bash
  | TASK SCHEDULE BASED ON RATE MONOTONIC ALGORITHM
  |01.02.02.03.01.NA.02.02.01.NA.03.NA.01.02.02.NA.01.NA.02.02
@@ -63,3 +64,5 @@ $ python rm.py invalid
 [RM] 7.523809523809524 <= 0.7797631496846196
 [RM] The bound is not met, therefore, this schedule is not feasible
 ```
+
+
