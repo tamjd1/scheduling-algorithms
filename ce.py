@@ -1,5 +1,16 @@
 import json
-import numpy as np
+from functools import reduce
+
+
+def get_gcd(*l):
+    from math import gcd
+    return reduce(gcd, l)
+
+
+def get_lcm(*l):
+    def lcm(a, b):
+        return (a * b) // get_gcd(a, b)
+    return reduce(lcm, l, 1)
 
 
 def run(tasks=None):
@@ -15,8 +26,8 @@ def run(tasks=None):
 
     periods = [task["period"] for task in tasks]
 
-    gcd = int(np.gcd.reduce(periods))
-    lcm = int(np.lcm.reduce(periods))
+    gcd = int(get_gcd(*periods))
+    lcm = int(get_lcm(*periods))
 
     print("[CE] Minor Cycle (GCD): {}".format(gcd))
     print("[CE] Major Cycle (LCM): {}".format(lcm))

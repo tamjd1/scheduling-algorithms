@@ -3,7 +3,6 @@ Scheduling algorithms for real time systems
 
 ### Prerequisites
 * Python 3.7
-* numpy==1.18.2
 
 ### Quick Start Guide
 To run the application:
