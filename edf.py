@@ -141,6 +141,15 @@ if __name__ == '__main__':
         {"task_num": 4, "arrival": 3, "computation": 2, "deadline": 10},
         {"task_num": 5, "arrival": 6, "computation": 2, "deadline": 9}
     ]
-    # _tasks = __tasks_fail
     _tasks = __tasks_success
+    import sys
+    args = sys.argv
+    if len(args) >= 2:
+        schedule_type = args[1]
+        if schedule_type == "valid":
+            _tasks = __tasks_success
+        elif schedule_type == "invalid":
+            _tasks = __tasks_fail
+
     run(_tasks)
+

@@ -14,9 +14,10 @@ def run(tasks=None):
 
     N = len(tasks)
     upper_bound = N*(2**(1/N) - 1)
-    print("[RM] Upper bound for process utilization factor for {} tasks is {}".format(N, upper_bound))
-
     task_utilization_factor = sum([task["computation"]/task["period"] for task in tasks])
+
+    print("[RM] Upper bound for process utilization factor for {} tasks is {}".format(N, upper_bound))
+    print("[RM] {} <= {}".format(task_utilization_factor, upper_bound))
 
     schedule_feasible = True if task_utilization_factor <= upper_bound else False
 
@@ -73,16 +74,29 @@ def run(tasks=None):
 
 
 if __name__ == '__main__':
-    __tasks_fail = [
-        {"task_num": 1, "computation": 20, "period": 100},
-        {"task_num": 2, "computation": 40, "period": 150},
-        {"task_num": 3, "computation": 100, "period": 350}
-    ]
     __tasks_success = [
         {"task_num": 1, "computation": 1, "period": 4},
         {"task_num": 2, "computation": 2, "period": 6},
         {"task_num": 3, "computation": 1, "period": 10}
     ]
-    # _tasks = __tasks_fail
+    __tasks_success_2 = [
+        {"task_num": 1, "computation": 20, "period": 100},
+        {"task_num": 2, "computation": 40, "period": 150},
+        {"task_num": 3, "computation": 100, "period": 350}
+    ]
+    __tasks_fail = [
+        {"task_num": 1, "computation": 20, "period": 10},
+        {"task_num": 2, "computation": 40, "period": 15},
+        {"task_num": 3, "computation": 100, "period": 35}
+    ]
     _tasks = __tasks_success
+    import sys
+    args = sys.argv
+    if len(args) >= 2:
+        schedule_type = args[1]
+        if schedule_type == "valid":
+            _tasks = __tasks_success
+        elif schedule_type == "invalid":
+            _tasks = __tasks_fail
+
     run(_tasks)
