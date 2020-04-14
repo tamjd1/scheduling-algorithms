@@ -12,12 +12,16 @@ import ce
 if __name__ == '__main__':
     while True:
         message = "\nPlease choose an algorithm below:"
-        message += "\nFor Earliest Due Date enter EDD"
-        message += "\nFor Earliest Deadline First enter EDF"
-        message += "\nFor Cyclic Executive enter CE"
-        message += "\nFor Rate Monotonic enter RM"
+        message += "\nFor Earliest Due Date type EDD"
+        message += "\nFor Earliest Deadline First type EDF"
+        message += "\nFor Cyclic Executive type CE"
+        message += "\nFor Rate Monotonic type RM"
+        message += "\nTo exit the application, hit Enter"
         print(message)
         algorithm = input()
+        if len(algorithm) == 0:
+            print("Goodbye!")
+            break
 
         try:
             eval(algorithm.lower()).run()
